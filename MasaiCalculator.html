@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Calculator</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            color: teal;
+        }
+        #calculator {
+            padding: 20px;
+            height: 500px;
+            width: 35%;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        #input{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            width: 350px;
+            height: 90px;
+            margin:auto ;  
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            font-size: 24px; 
+            
+        }
+        #keyboard{
+            width: 300px;
+            height: 200px;
+            margin:auto;
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(4, 75px);
+            gap: 10px;
+            justify-content: center;
+        }
+        #keyboard>div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            padding: 35px;
+            display: flex;
+            border-radius: 10%;
+            font-size: 20px;
+        }
+        .black{
+            background-color: black;
+            color: white;
+        }
+        .red{
+                background-color: red;
+                color: white;
+        }
+        #keyboard>div:hover{
+            cursor: pointer;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masai Calculator</h1>
+    <div id="calculator">
+        <div id="input"></div>
+        <div id="keyboard">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div class="black">+</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div class="black">-</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div class="black">*</div>
+            <div class="red">C</div>
+            <div>0</div>
+            <div>=</div>
+            <div>/</div>
+        </div>    
+    </div>
+</body>
+</html>
+<script>
+    var keys = document.querySelectorAll("#keyboard > div");
+    var bag = "";
+    for (var i = 0; i < keys.length; i++) {
+        keys[i].addEventListener("click", myfunction);
+    }
+
+    function myfunction(event) {
+        var targetnumber = event.target.innerText;
+
+        if (targetnumber === "C") {
+            bag = "";
+            document.querySelector("#input").innerText = "";
+        } else if (targetnumber === "=") {
+            try {
+                document.querySelector("#input").innerText = eval(bag);
+            } catch (error) {
+                document.querySelector("#input").innerText = "Error";
+            }
+        } else {
+            bag = bag + targetnumber;
+            document.querySelector("#input").innerText = bag;
+        }
+    }
+</script>
